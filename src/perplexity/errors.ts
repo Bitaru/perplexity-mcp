@@ -1,0 +1,2 @@
+export type ProviderCode="PERPLEXITY_AUTH_REQUIRED"|"PERPLEXITY_CHALLENGE_REQUIRED"|"PERPLEXITY_ACCESS_DENIED"|"PERPLEXITY_ENTITLEMENT_REQUIRED"|"PERPLEXITY_TIMEOUT"|"PERPLEXITY_RATE_LIMITED"|"PERPLEXITY_UNAVAILABLE"|"PERPLEXITY_PROTOCOL_ERROR";
+export class ProviderError extends Error{constructor(public code:ProviderCode,message:string){super(message);this.name=code;}}

@@ -1,0 +1,3 @@
+import { expect,it } from "vitest"; import { requireOwner } from "../../src/access";
+it("accepts verified getIdentity owner and rejects wrong or missing",async()=>{const owner={access:{getIdentity:async()=>({email:"Owner@Example.com"})}};await expect(requireOwner(owner,"owner@example.com")).resolves.toBe("owner@example.com");await expect(requireOwner({access:{getIdentity:async()=>({email:"other@example.com"})}},"owner@example.com")).rejects.toThrow("ACCESS_DENIED");await expect(requireOwner({},"owner@example.com")).rejects.toThrow("ACCESS_DENIED");});
+it("does not accept header-shaped identity",async()=>{await expect(requireOwner({headers:{"cf-access-authenticated-user-email":"owner@example.com"}} as never,"owner@example.com")).rejects.toThrow("ACCESS_DENIED");});
