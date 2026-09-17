@@ -48,13 +48,19 @@ Do not use the Worker until this step is complete. An incorrect policy can expos
 
 Worker-level Access protects the `workers.dev` address, routes, custom domains, and preview addresses. See [Cloudflare Access for Workers](https://developers.cloudflare.com/workers/configuration/cloudflare-access/).
 
-Open the new Access application in Cloudflare Zero Trust. Enable Managed OAuth and add this allowed redirect URI for ChatGPT:
+Open the new Access application in Cloudflare Zero Trust. Under its OAuth configuration:
+
+1. Enable OAuth.
+2. Enable Dynamic Client Registration.
+3. Allow this redirect URI:
 
 ```text
 https://chatgpt.com/connector/oauth/*
 ```
 
 Use a short Access token lifetime, such as 15 minutes. A grant lifetime of one or two weeks reduces repeated sign-ins.
+
+This OAuth setting is required for remote MCP clients. Without it, Access serves a browser login page or a 403 response, and ChatGPT reports that the server does not implement OAuth. Do not select `No authentication` in ChatGPT while the Worker is protected by Access.
 
 ### 3. Connect the Perplexity account
 

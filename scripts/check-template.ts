@@ -15,8 +15,8 @@ const required = [
 for (const file of required) await access(file);
 
 const readme = await readFile("README.md", "utf8");
-if (!readme.includes("https://deploy.workers.cloudflare.com/button")) {
-  throw new Error("Deploy Button link missing");
+for (const marker of ["https://deploy.workers.cloudflare.com/button", "Dynamic Client Registration", "https://chatgpt.com/connector/oauth/*"]) {
+  if (!readme.includes(marker)) throw new Error(`setup requirement missing: ${marker}`);
 }
 
 const packageJson = JSON.parse(await readFile("package.json", "utf8"));

@@ -1,6 +1,6 @@
 # Troubleshooting
 
-- `SETUP_REQUIRED`: Set a valid `OWNER_EMAIL`.
+- Access OAuth error: Open the Access application and enable OAuth plus Dynamic Client Registration. Allow `https://chatgpt.com/connector/oauth/*`. An unauthenticated `/mcp` request must return `401` with `WWW-Authenticate`; a `403` or browser login redirect means the Access OAuth configuration is missing.
 - Access denial: Protect the whole hostname and make sure that the signed-in identity exactly matches `OWNER_EMAIL`.
 - `PERPLEXITY_AUTH_REQUIRED`: The stored provider session is absent or expired. Open the protected `/admin` page and connect Perplexity again.
 - Challenge, entitlement, rate-limit, timeout, and protocol errors: Treat these as separate provider outcomes. Do not bypass account protection or repeat OTP requests.
