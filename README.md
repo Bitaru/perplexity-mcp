@@ -2,13 +2,13 @@
 
 ## What it is
 
+This project uses **Perplexity consumer authentication**. It is **not an official** Perplexity API integration. Perplexity can change or restrict this flow.
+
 This project runs a private Perplexity search tool on Cloudflare Workers. ChatGPT or another MCP client can call one tool, `search_perplexity`.
 
 Cloudflare Access limits the Worker to one email address. The Worker signs in to Perplexity by email code and supports an authenticator code when required.
 
 Cloudflare encrypts Durable Object data and metadata at rest with Cloudflare-managed keys. The MCP client never receives the Perplexity cookie. See [Durable Objects data security](https://developers.cloudflare.com/durable-objects/reference/data-security/).
-
-This project uses Perplexity consumer authentication. It is not an official Perplexity API integration. Perplexity can change or restrict this flow.
 
 ## Installation
 
